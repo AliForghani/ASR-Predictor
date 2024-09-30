@@ -1,0 +1,8 @@
+os
+subprocess
+streamlit
+scikit-learn
+numpy
+pandas
+plotly
+joblib
