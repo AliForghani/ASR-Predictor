@@ -1,5 +1,3 @@
-os
-subprocess
 streamlit
 scikit-learn
 numpy
