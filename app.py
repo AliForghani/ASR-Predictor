@@ -121,7 +121,7 @@ def create_bar_chart(required_df,storage_option,inj_rate,ext_inj):
 
 st.set_page_config(layout="wide")
 # Title of the app
-st.title("Aquifer Storage and Recovery Performance Predictor")
+st.title("Aquifer Storage and Recovery (ASR) Performance Predictor")
 
 form_col, empty_col=st.columns([2.5,1.55])
 with form_col:
