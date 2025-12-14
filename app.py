@@ -8,7 +8,7 @@ import os
 import numpy as np
 import joblib
 
-def normalize_input(input_values):
+def normalize_input(input_values, storage_option):
     input_norm = np.zeros_like(input_values)
     
     input_norm[:, 0] = (input_values[:, 0] - 43) / (230 - 43)
@@ -30,7 +30,6 @@ def normalize_input(input_values):
 def feedforward_vectorized(input_scenarios, W1, W2):
     # Add bias to all input scenarios (bias=1 as the first column)
     input_scenarios_with_bias = np.hstack([np.ones((input_scenarios.shape[0], 1)), input_scenarios])
-    print(input_scenarios_with_bias)
     
     # Compute the hidden layer input (input_scenarios_with_bias (Nx8) * W1 (8x30))
     hidden_input = np.dot(input_scenarios_with_bias, W1)
@@ -64,7 +63,7 @@ def run_model(storage_option,k,inj,por,thk,chd,ext_inj,dsp):
         W2 = model_weights['W2_1year']
 
 
-    input_normalized = normalize_input(input_values)
+    input_normalized = normalize_input(input_values, storage_option)
     RENs = feedforward_vectorized(input_normalized, W1, W2)
 
     required_outputs = {
@@ -188,7 +187,9 @@ with form_col:
         with col6:
             ext_inj = st.slider("EXT/Inj Ratio",  min_value=1.0, max_value=3.0,step=0.01, value=2.0,format="%0.1f") 
         with col7:
-            dsp = st.slider("Long-Dispersivity",  min_value=5.0, max_value=50.0,step=0.1, value=25.0,format="%0.1f")
+            dsp = 25.0 # a default value that is used as placeholder for 1 year storage
+            if storage_option == '0':
+                dsp = st.slider("Long-Dispersivity",  min_value=5.0, max_value=50.0,step=0.1, value=25.0,format="%0.1f")
 
         submit_button = st.form_submit_button(label="Submit")
 
@@ -199,6 +200,7 @@ if submit_button:
 
     fig = create_bar_chart(required_df,storage_option,inj,ext_inj)
     st.plotly_chart(fig)
+
 
 
 
