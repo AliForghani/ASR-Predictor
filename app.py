@@ -124,52 +124,42 @@ def create_bar_chart(required_df,storage_option,inj_rate,ext_inj):
 st.set_page_config(
     layout="wide",
     page_title="ASR Performance Predictor",
-    initial_sidebar_state="collapsed",
-    menu_items={
-        'Get Help': None,
-        'Report a bug': None,
-        'About': None
-    }
+    initial_sidebar_state="collapsed"
 )
 
-# Enhanced CSS to hide ALL Streamlit branding elements
-hide_streamlit_style = """
-    <style>
-    /* Hide main menu */
-    #MainMenu {visibility: hidden !important;}
-    
-    /* Hide footer */
-    footer {visibility: hidden !important;}
-    
-    /* Hide header */
-    header {visibility: hidden !important;}
-    
-    /* Hide deploy button */
-    .stDeployButton {display: none !important;}
-    
-    /* Hide toolbar */
-    section[data-testid="stToolbar"] {display: none !important;}
-    div[data-testid="stToolbar"] {display: none !important;}
-    
-    /* Hide GitHub icon and menu buttons */
-    button[kind="header"] {display: none !important;}
-    
-    /* Hide the entire header toolbar */
-    .stApp header {display: none !important;}
-    
-    /* Hide settings menu */
-    #stDecoration {display: none !important;}
-    
-    /* Additional targeting for stubborn elements */
-    [data-testid="stHeader"] {display: none !important;}
-    
-    /* Hide any buttons in the top-right */
-    section[data-testid="stSidebar"] ~ section > div > div:first-child > div:first-child {
-        display: none !important;
-    }
-    </style>
-    """
-st.markdown(hide_streamlit_style, unsafe_allow_html=True)
+st.markdown("""
+<style>
+/* Hide Streamlit main menu */
+#MainMenu {
+    visibility: hidden;
+}
+
+/* Hide Streamlit header */
+header {
+    visibility: hidden;
+}
+
+/* Hide Streamlit footer */
+footer {
+    visibility: hidden;
+}
+
+/* Hide Streamlit deploy button */
+.stDeployButton {
+    display: none;
+}
+
+/* Hide Streamlit toolbar (top-right floating icons) */
+[data-testid="stToolbar"] {
+    display: none;
+}
+
+/* Remove top padding caused by hidden header */
+.stApp {
+    margin-top: -80px;
+}
+</style>
+""", unsafe_allow_html=True)
 
 # Title of the app
 st.title("Aquifer Storage and Recovery (ASR) Performance Predictor")
@@ -209,6 +199,7 @@ if submit_button:
 
     fig = create_bar_chart(required_df,storage_option,inj,ext_inj)
     st.plotly_chart(fig)
+
 
 
 
