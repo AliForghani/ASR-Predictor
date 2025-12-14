@@ -119,10 +119,12 @@ def create_bar_chart(required_df,storage_option,inj_rate,ext_inj):
     fig.update_yaxes(title_text='Pumping Rate (cfs)', row=1, col=2)
     return fig
 
+
 # Configure page settings and hide Streamlit menu/icons
 st.set_page_config(
     layout="wide",
     page_title="ASR Performance Predictor",
+    initial_sidebar_state="collapsed",
     menu_items={
         'Get Help': None,
         'Report a bug': None,
@@ -130,15 +132,41 @@ st.set_page_config(
     }
 )
 
-# Hide Streamlit branding elements
+# Enhanced CSS to hide ALL Streamlit branding elements
 hide_streamlit_style = """
     <style>
-    #MainMenu {visibility: hidden;}
-    footer {visibility: hidden;}
-    header {visibility: hidden;}
-    .stDeployButton {display:none;}
-    div[data-testid="stToolbar"] {display: none;}
-    .stAppDeployButton {display:none;}
+    /* Hide main menu */
+    #MainMenu {visibility: hidden !important;}
+    
+    /* Hide footer */
+    footer {visibility: hidden !important;}
+    
+    /* Hide header */
+    header {visibility: hidden !important;}
+    
+    /* Hide deploy button */
+    .stDeployButton {display: none !important;}
+    
+    /* Hide toolbar */
+    section[data-testid="stToolbar"] {display: none !important;}
+    div[data-testid="stToolbar"] {display: none !important;}
+    
+    /* Hide GitHub icon and menu buttons */
+    button[kind="header"] {display: none !important;}
+    
+    /* Hide the entire header toolbar */
+    .stApp header {display: none !important;}
+    
+    /* Hide settings menu */
+    #stDecoration {display: none !important;}
+    
+    /* Additional targeting for stubborn elements */
+    [data-testid="stHeader"] {display: none !important;}
+    
+    /* Hide any buttons in the top-right */
+    section[data-testid="stSidebar"] ~ section > div > div:first-child > div:first-child {
+        display: none !important;
+    }
     </style>
     """
 st.markdown(hide_streamlit_style, unsafe_allow_html=True)
@@ -181,4 +209,5 @@ if submit_button:
 
     fig = create_bar_chart(required_df,storage_option,inj,ext_inj)
     st.plotly_chart(fig)
+
 
