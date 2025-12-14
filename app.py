@@ -172,7 +172,7 @@ hide_streamlit_style = """
 st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 
 # Title of the app
-st.title("Aquifer Storage and Recovery (ASR) Performance Predictor")
+st.title("Aquifer Storage and Recovery (ASR) Performance Predictors")
 
 form_col, empty_col=st.columns([2.5,1.55])
 with form_col:
@@ -209,5 +209,6 @@ if submit_button:
 
     fig = create_bar_chart(required_df,storage_option,inj,ext_inj)
     st.plotly_chart(fig)
+
 
 
