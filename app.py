@@ -187,9 +187,7 @@ with form_col:
         with col6:
             ext_inj = st.slider("EXT/Inj Ratio",  min_value=1.0, max_value=3.0,step=0.01, value=2.0,format="%0.1f") 
         with col7:
-            dsp = 25.0 # a default value that is used as placeholder for 1 year storage
-            if storage_option == '0':
-                dsp = st.slider("Long-Dispersivity",  min_value=5.0, max_value=50.0,step=0.1, value=25.0,format="%0.1f")
+            dsp = st.slider("Long-Dispersivity",  min_value=5.0, max_value=50.0,step=0.1, value=25.0,format="%0.1f")
 
         submit_button = st.form_submit_button(label="Submit")
 
@@ -200,6 +198,7 @@ if submit_button:
 
     fig = create_bar_chart(required_df,storage_option,inj,ext_inj)
     st.plotly_chart(fig)
+
 
 
 
