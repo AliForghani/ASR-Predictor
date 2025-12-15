@@ -100,7 +100,7 @@ def create_bar_chart(required_df,storage_option,inj_rate,ext_inj):
 
     fig.update_layout(
         title=None,
-        ,height=550
+        height=550
     )
 
     fig.update_xaxes(title_text="Extraction Durations (Days)", row=1, col=1)
@@ -191,6 +191,7 @@ if submit_button:
 
     fig = create_bar_chart(required_df,storage_option,inj,ext_inj)
     st.plotly_chart(fig)
+
 
 
 
