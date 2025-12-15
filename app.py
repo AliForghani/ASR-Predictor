@@ -99,7 +99,6 @@ def create_bar_chart(required_df,storage_option,inj_rate,ext_inj):
 
 
     fig.update_layout(
-        title=None,
         height=550
     )
 
@@ -191,6 +190,7 @@ if submit_button:
 
     fig = create_bar_chart(required_df,storage_option,inj,ext_inj)
     st.plotly_chart(fig)
+
 
 
 
