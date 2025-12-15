@@ -99,14 +99,7 @@ def create_bar_chart(required_df,storage_option,inj_rate,ext_inj):
 
 
     fig.update_layout(
-        title={
-            # 'text': plot_title,
-            'y': 0.95,  # Vertical position of the title (0.0 - bottom, 1.0 - top)
-            'x': 0.5,  # Horizontal position (0.5 centers the title)
-            'xanchor': 'center',
-            'yanchor': 'top',
-            'font': {'size': 20, 'family': 'Arial', 'color': 'black'}
-        }
+        title=None,
         ,height=550
     )
 
@@ -198,6 +191,7 @@ if submit_button:
 
     fig = create_bar_chart(required_df,storage_option,inj,ext_inj)
     st.plotly_chart(fig)
+
 
 
 
